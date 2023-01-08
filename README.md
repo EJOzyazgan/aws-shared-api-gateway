@@ -9,11 +9,11 @@ Example for implementing a shared API gateway in AWS
 
 * Auth API
 
-  * [Serverless File](auth/serverless.yml)
-  * [Handler](auth/authHandler.js)
+  * [Serverless File](services/auth/serverless.yml)
+  * [Handler](services/auth/authHandler.js)
 
 * User API
 
-  * [Serverless File](user/serverless.yml)
-  * [Handler](user/userHandler.js)
+  * [Serverless File](services/user/serverless.yml)
+  * [Handler](services/user/userHandler.js)
 
