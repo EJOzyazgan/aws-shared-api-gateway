@@ -1,0 +1,20 @@
+service: shared-api-gateway-user
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  apiGateway:
+    restApiId:
+      "Fn::ImportValue": SharedAPIGateway-restApiId
+    restApiRootResourceId:
+      "Fn::ImportValue": SharedAPIGateway-rootResourceId
+  httpApi:
+    cors: true
+    disableDefaultEndpoint: true
+functions:
+  getUser:
+    handler: userHandler.getUser
+    events:
+      - http:
+          path: user/get-user
+          method: get

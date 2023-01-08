@@ -1,0 +1,32 @@
+service: shared-api-gateway-auth
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  apiGateway:
+    restApiId: 
+      "Fn::ImportValue": SharedAPIGateway-restApiId
+    restApiRootResourceId:
+      "Fn::ImportValue": SharedAPIGateway-rootResourceId
+  httpApi:
+    cors: true
+    disableDefaultEndpoint: true
+functions:
+  signUp:
+    handler: authHandler.signUp
+    events:
+      - http:
+          path: auth/sign-up
+          method: post
+  signIn:
+    handler: authHandler.signIn
+    events:
+      - http:
+          path: auth/sign-in
+          method: post
+  confirmEmail:
+    handler: authHandler.confirmEmail
+    events:
+      - http:
+          path: auth/confirm-email
+          method: post

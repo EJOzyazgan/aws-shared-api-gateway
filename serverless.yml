@@ -1,0 +1,26 @@
+service: shared-api-gateway
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+resources:
+  Resources:
+    SharedAPIGateway:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: SharedAPIGateway
+  Outputs:
+    apiGatewayRestApiId:
+      Value:
+        Ref: SharedAPIGateway
+      Export:
+        Name: SharedAPIGateway-restApiId
+    apiGatewayRestApiRootResourceId:
+      Value:
+        Fn::GetAtt:
+          - SharedAPIGateway
+          - RootResourceId
+      Export:
+        Name: SharedAPIGateway-rootResourceId
